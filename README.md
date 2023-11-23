@@ -1,4 +1,4 @@
-## test local
+# test local (linux environment)
 
 - `python3 -m venv env`
 
@@ -8,6 +8,6 @@
 
 - `python3 Weather_Classification_TP.py`
 
-## run docker
+# run docker
 
 - `docker compose up`

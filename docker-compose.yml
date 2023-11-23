@@ -1,8 +1,10 @@
 version: '3.8'
 
 services:
+  # create a container named "weather" from the Dockerfile in the current directory
   weather:
     build: .
+    # add 2 volumes to the container for the input and output data
     volumes:
       - ./data/:/app/data
       - ./result/:/app/result

@@ -1,4 +1,3 @@
-- comment all
 - test if image already treated 
 - test resilience
 - deploy
