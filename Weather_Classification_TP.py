@@ -2,6 +2,7 @@
 from tqdm import tqdm
 from glob import glob
 import numpy as np
+import imghdr
 
 # Data imports
 from tensorflow.keras.utils import load_img, img_to_array
@@ -23,7 +24,11 @@ def load_image(path):
     '''
     Takes in path of the image and load it
     '''
-    img = resize(img_to_array(load_img(path)) / 255., (256, 256))
+    try:
+        img = resize(img_to_array(load_img(path)) / 255., (256, 256))
+    except UnidentifiedImageError:
+        print(f"Error: {path} is not a valid image file!")
+        return None
     return img
 
 
@@ -39,7 +44,7 @@ def load_data(img_paths):
 
 
 # Load images
-image_paths = sorted(glob('./data/*.jpg'))
+image_paths = [x for x in sorted(glob('./data/*.jpg')) if imghdr.what(x) is not None]
 print(f"Total Number of Images: {len(image_paths)}")
 
 # Check the existing processed files
