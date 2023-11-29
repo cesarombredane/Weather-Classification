@@ -1,4 +1,5 @@
 # Common imports
+from PIL import UnidentifiedImageError
 from tqdm import tqdm
 from glob import glob
 import numpy as np
@@ -24,11 +25,7 @@ def load_image(path):
     '''
     Takes in path of the image and load it
     '''
-    try:
-        img = resize(img_to_array(load_img(path)) / 255., (256, 256))
-    except UnidentifiedImageError:
-        print(f"Error: {path} is not a valid image file!")
-        return None
+    img = resize(img_to_array(load_img(path)) / 255., (256, 256))
     return img
 
 
@@ -44,8 +41,11 @@ def load_data(img_paths):
 
 
 # Load images
-image_paths = [x for x in sorted(glob('./data/*.jpg')) if imghdr.what(x) is not None]
-print(f"Total Number of Images: {len(image_paths)}")
+image_paths = [
+    x for x in sorted(glob('./data/*.jpg'))
+    if imghdr.what(x) is not None or print(f"File processing ...\nError: The file '{x}' is not a valid image!")
+]
+print(f"\nTotal number of valid images: {len(image_paths)}")
 
 # Check the existing processed files
 output_dir = './result/'
@@ -61,20 +61,20 @@ for result_file in existing_result_files:
 
 # Filter already processed images
 unprocessed_image_paths = [path for path in image_paths if os.path.basename(path) not in processed_images]
-print(f"Total Number of Unprocessed Images: {len(unprocessed_image_paths)}")
+print(f"Total number of unprocessed valid images: {len(unprocessed_image_paths)}")
 
 if len(unprocessed_image_paths) == 0:
-    print("All images have been processed! The CSV sum-up is/are already in the result folder.")
+    print("\nAll valid images have been processed! The CSV sum-up is/are already in the result folder.")
     exit()
 elif len(unprocessed_image_paths) == len(image_paths):
-    print("All images in the data folder are unprocessed, so the prediction of all images will now begin...")
+    print("\nAll valid images in the data folder are unprocessed, so the prediction of all images will now begin...")
 
     # Load all images for prediction
     images = load_data(image_paths)
     processed_to_write = image_paths
 else:
     # Interactive prompt for user choice
-    skip_processed = input("Do you want to skip processing already predicted images? (yes/no): ").lower()
+    skip_processed = input("\nDo you want to skip processing already predicted images? (yes/no): ").lower()
 
     if skip_processed == 'yes':
         # Load unprocessed images for prediction
