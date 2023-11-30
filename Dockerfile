@@ -8,6 +8,7 @@ WORKDIR /app
 COPY ./requirements.txt .
 
 # install the requirements
+RUN python3 -m pip install -upgrade pip
 RUN python3 -m pip install -r requirements.txt
 
 # copy the python script to the working directory
