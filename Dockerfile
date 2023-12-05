@@ -5,12 +5,13 @@ RUN apk add --no-cache gcc musl-dev linux-headers
 # set the working directory to /app
 WORKDIR /app
 
-# copy the requirements file to the working directory
-COPY ./requirements.txt .
-
 # install system dependencies
 RUN apk update && \
     apk add --no-cache build-base libffi-dev openssl-dev
+
+
+# copy the requirements file to the working directory
+COPY ./requirements.txt .
 
 # install the requirements
 RUN python3 -m pip install --upgrade pip
