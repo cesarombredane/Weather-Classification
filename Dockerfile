@@ -8,6 +8,10 @@ WORKDIR /app
 # copy the requirements file to the working directory
 COPY ./requirements.txt .
 
+# install system dependencies
+RUN apk update && \
+    apk add --no-cache build-base libffi-dev openssl-dev
+
 # install the requirements
 RUN python3 -m pip install --upgrade pip
 RUN python3 -m pip install -r requirements.txt
