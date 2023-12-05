@@ -1,6 +1,7 @@
 # pull a python base image (alpine distro is a lightweight version of linux)
 FROM python:3.10.12-alpine
 
+RUN apk add --no-cache gcc musl-dev linux-headers
 # set the working directory to /app
 WORKDIR /app
 
