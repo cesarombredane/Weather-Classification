@@ -1,13 +1,9 @@
 # pull a python base image (alpine distro is a lightweight version of linux)
-FROM python:3.10.12-alpine
+FROM python:3.10.8
 
-RUN apk add --no-cache gcc musl-dev linux-headers
+
 # set the working directory to /app
 WORKDIR /app
-
-# install system dependencies
-RUN apk update && \
-    apk add --no-cache build-base libffi-dev openssl-dev
 
 
 # copy the requirements file to the working directory
