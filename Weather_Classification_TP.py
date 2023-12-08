@@ -55,9 +55,15 @@ unprocessed_image_paths = [path for path in image_paths if os.path.basename(path
 print(f'number of unprocessed images: {len(unprocessed_image_paths)}')
 
 # Ask user if they want to skip processing already predicted images
-processed_to_write = image_paths if '-y' in sys.argv or (input('processing already predicted images? (Y/n): ') or 'Y') == 'Y' else unprocessed_image_paths
+user_input = input('Processing already predicted images? (Y/n): ').lower()
+while user_input not in ['y', 'n']:
+    print("Not a valid input. You can write 'Y' or 'N' in lower or upper case")
+    user_input = input('Processing already predicted images? (Y/n): ').lower()
+
+processed_to_write = image_paths if '-y' in sys.argv or user_input == 'y' else unprocessed_image_paths
+
 if len(processed_to_write) == 0:
-    print('no images to process')
+    print('No images to process')
     exit()
 
 # Load model
