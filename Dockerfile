@@ -17,4 +17,4 @@ RUN python3 -m pip install -r requirements.txt
 COPY Weather_Classification_TP.py .
 
 # run the python script
-CMD ["python3", "Weather_Classification_TP.py"]
+CMD ["python3", "Weather_Classification_TP.py", "-y"]

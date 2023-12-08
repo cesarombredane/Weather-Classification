@@ -3,6 +3,7 @@ from tqdm import tqdm
 from glob import glob
 import numpy as np
 import imghdr
+import sys
 
 # Data imports
 from tensorflow.keras.utils import load_img, img_to_array
@@ -33,7 +34,6 @@ def load_data(img_paths):
     for i, path in tqdm(enumerate(img_paths), desc='Loading'): X[i] = load_image(path)
     return X
 
-
 # Load images
 image_paths = [
     x for x in sorted(glob('./data/*.jpg'))
@@ -55,7 +55,7 @@ unprocessed_image_paths = [path for path in image_paths if os.path.basename(path
 print(f'number of unprocessed images: {len(unprocessed_image_paths)}')
 
 # Ask user if they want to skip processing already predicted images
-processed_to_write = image_paths if (input('processing already predicted images? (Y/n): ') or 'Y') == 'Y' else unprocessed_image_paths
+processed_to_write = image_paths if '-y' in sys.argv or (input('processing already predicted images? (Y/n): ') or 'Y') == 'Y' else unprocessed_image_paths
 if len(processed_to_write) == 0:
     print('no images to process')
     exit()
