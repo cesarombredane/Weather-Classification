@@ -1,4 +1,4 @@
-# Software requirement
+# Software requirements
 Need to have Docker & Docker Composed installed on your computer, here is the link that explains what is Docker and how to install it: https://docs.docker.com/desktop/. After installing it, check if you have Docker and Docker Compose by typing respectively in your terminal/command line : 
 - `docker --version`
 - `docker-compose --version`
