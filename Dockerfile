@@ -1,10 +1,8 @@
-# pull a python base image (alpine distro is a lightweight version of linux)
+# pull a python base image
 FROM python:3.10.8
-
 
 # set the working directory to /app
 WORKDIR /app
-
 
 # copy the requirements file to the working directory
 COPY ./requirements.txt .
