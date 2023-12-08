@@ -31,8 +31,10 @@ As the files were large, we used **Git LFS** :
 
 -> Otherwise, if the output of `python -- version` is already 3.10.8, you can continue with the following commands :
 
+3. Have to download all the packages requirements :
 - `python3 -m pip install -r requirements.txt`
 
+4. And finally have to run it :
 - `python3 Weather_Classification_TP.py`
 
 # run docker
