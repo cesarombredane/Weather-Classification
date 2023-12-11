@@ -8,3 +8,6 @@ services:
     volumes:
       - ./data/:/app/data
       - ./result/:/app/result
+
+    ports:
+      - "8000:8000"

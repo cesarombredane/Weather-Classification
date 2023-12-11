@@ -10,9 +10,12 @@ COPY ./requirements.txt .
 # install the requirements
 RUN python3 -m pip install --upgrade pip
 RUN python3 -m pip install -r requirements.txt
+RUN python3 -m pip install python-multipart
 
 # copy the python script to the working directory
 COPY Weather_Classification_TP.py .
+COPY api.py .
 
 # run the python script
 CMD ["python3", "Weather_Classification_TP.py", "-y"]
+CMD ["uvicorn", "api:app", "--host", "0.0.0.0", "--port", "8000"]

@@ -5,6 +5,7 @@ certifi==2023.11.17
 charset-normalizer==3.3.2
 contourpy==1.2.0
 cycler==0.12.1
+fastapi==0.104.1
 flatbuffers==23.5.26
 fonttools==4.45.0
 gast==0.5.4
@@ -52,5 +53,6 @@ tqdm==4.66.1
 typing_extensions==4.8.0
 tzdata==2023.3
 urllib3==2.1.0
+uvicorn==0.24.0
 Werkzeug==3.0.1
 wrapt==1.14.1
